@@ -24,7 +24,7 @@ This project allows users to add, edit, delete, and mark tasks as completed.
 ## ⚙️ Installation & Usage
 ```bash
 # Clone this repository
-git clone https://github.com/your-username/todo-list.git
+
 
 # Go to project directory
 cd todo-list
