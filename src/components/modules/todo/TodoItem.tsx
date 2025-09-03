@@ -43,7 +43,7 @@ export default function TodoItem({ todo, onStatusChangeTodo, onDeleteTodo, onUpd
             </td>
 
             <td className="px-3 py-2 w-[70px]">
-                <span className={`bg-${todo.status === "Done" ? "green" : "yellow"}-600 px-2 py-1 rounded-sm text-white text-xs font-medium`}>{todo.status}</span>
+                <span className={`bg-${todo.status === "Done" ? "green" : "blue"}-600 px-2 py-1 rounded-sm text-white text-xs font-medium`}>{todo.status}</span>
             </td>
             <td className="px-3 py-2 w-[60px] ">
                 <div className=" flex gap-x-2">
