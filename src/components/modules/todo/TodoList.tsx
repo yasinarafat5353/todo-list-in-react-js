@@ -1,72 +1,16 @@
-
-
-import { useState } from "react";
+import { useContext } from "react";
 import AddTask from "./AddTask";
 import TodoItem from "./TodoItem";
-import type { TodoStateType } from "../../../store/todo/todoInterface";
+import { TodoContext } from "../../../store/todo/todoContext";
 
 function TodoList() {
-
-
-
-
-    const [todos, setTodos] = useState<TodoStateType>([]);
-
-    const handleAddTodo = (text: string) => {
-        setTodos([
-            ...todos,
-            {
-                id: todos.length + 1,
-                title: text,
-                status: "Doing"
-            }
-        ]);
-    }
-
-    const handleUpdateTodo = (id: number, title: string) => {
-        console.log(id, title);
-        const updateTodos: TodoStateType = todos.map(todo => {
-            if (todo.id === id) {
-                return {
-                    ...todo,
-                    title: title
-                }
-            }
-            return todo;
-        })
-
-        setTodos(updateTodos)
-    }
-
-    const handleDeleteTodo = (id: number) => {
-        const updateTodos = todos.filter(todo => todo.id != id);
-        setTodos(updateTodos)
-    }
-
-    const handleStatusChangeTodo = (id: number) => {
-
-        const updateTodos: TodoStateType = todos.map(todo => {
-            if (todo.id === id) {
-                return {
-                    ...todo,
-                    status: todo.status === "Doing" ? "Done" : "Doing",
-                }
-            }
-            return todo;
-
-        });
-
-        setTodos(updateTodos);
-
-
-    }
-
+    const todos = useContext(TodoContext);
 
     return (
         <div className="container max-w-2xl mx-auto p-2 my-5 ">
             <h1 className="py-5 text-3xl text-center font-bold">To do list</h1>
 
-            <AddTask onAddTask={handleAddTodo} />
+            <AddTask />
 
             <div className="rounded border border-gray-300 shadow-sm">
 
@@ -85,9 +29,6 @@ function TodoList() {
                         {todos.map(todo => <TodoItem
                             todo={todo}
                             key={todo.id}
-                            onUpdateTodo={handleUpdateTodo}
-                            onDeleteTodo={handleDeleteTodo}
-                            onStatusChangeTodo={handleStatusChangeTodo}
                         />)}
 
                     </tbody>
